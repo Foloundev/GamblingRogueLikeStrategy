@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEditor;
 using UnityEngine;
+using static UnityEditor.Progress;
 
 
 public class PlayerItems : MonoBehaviour
@@ -19,11 +20,13 @@ public class PlayerItems : MonoBehaviour
     public float deadX, deadY;
 
     private Inventory inventory;
+    private CarcassShute carcassShute;
     [SerializeField] private InventoryUI inventoryUI;
 
 
     private void Start()
     {
+        carcassShute = GameObject.Find("CarcassShute").GetComponent<CarcassShute>();
         inventory = new Inventory(UseItem);
         inventoryUI.SetInventory(inventory);
         inventoryUI.SetPlayer(this);
@@ -44,17 +47,17 @@ public class PlayerItems : MonoBehaviour
         ItemWorld itemWorld = collision.GetComponent<ItemWorld>();
         if (itemWorld != null)
         {
+            Debug.Log("Converted");
             // Touching item
             inventory.AddItem(itemWorld.GetItem());
             itemWorld.DestroySelf();
         }
     }
 
-    private void UseItem(Item item)
+    public void UseItem(Item item)
     {
         switch(item.itemType) {
             case Item.ItemType.Remains:
-                carcassCount++;
                 inventory.RemoveItem(new Item { itemType = Item.ItemType.Remains, amount = 1 });
                 break;
             case Item.ItemType.Key:
@@ -63,8 +66,26 @@ public class PlayerItems : MonoBehaviour
         }
     }
 
+    public bool isSold = false;
+
     private void Update()
     {
+
+        if (carcassShute.isInRange && Input.GetKeyUp(KeyCode.E))
+        {
+            isSold = true;
+            healthValue += carcassCount;
+            inventory.RemoveItem(new Item { itemType = Item.ItemType.Remains, amount = carcassCount });
+            carcassCount = 0;
+        }
+
+
+        if (inventory.carcassAdd != 0)
+        {
+            if (!isSold) carcassCount += inventory.carcassAdd;
+            inventory.carcassAdd = 0;
+            isSold = false;
+        }
         if (detectedDeath)
         {
             detectedDeath = false;

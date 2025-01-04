@@ -9,11 +9,15 @@ public class PlayerGamble : MonoBehaviour
 
     private PlayerItems pItems;
 
+
+    private Inventory inventory;
     public CarcassShute carcassShute;
 
     private void Start()
     {
         pItems = GetComponent<PlayerItems>();
+
+        inventory = new Inventory(pItems.UseItem);
     }
 
     private void Update()
@@ -22,12 +26,6 @@ public class PlayerGamble : MonoBehaviour
         {
             Debug.Log("Open Lootbox");
             LootboxUI.SetActive(!LootboxUI.activeSelf);
-        }
-
-        if(carcassShute.isInRange && Input.GetKeyUp(KeyCode.E))
-        {
-            pItems.healthValue += pItems.carcassCount;
-            pItems.carcassCount = 0;
         }
     }
 }

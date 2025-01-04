@@ -37,6 +37,7 @@ public class InventoryUI : MonoBehaviour
         RefreshInventoryItems();
     }
 
+
     private void RefreshInventoryItems()
     {
         if (itemSlotContainer == null || itemSlotTemplate == null)

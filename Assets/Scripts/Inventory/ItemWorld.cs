@@ -29,21 +29,21 @@ public class ItemWorld : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     public TextMeshPro amtText;
 
-    private void Start()
+    private void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
-        if (spriteRenderer == null)
-        {
-            Debug.LogError("SpriteRenderer not found on " + gameObject.name);
-        }
-
+        Debug.Log("This is start");
         amtText = transform.Find("amtText").GetComponent<TextMeshPro>();
     }
     public void SetItem(Item item)
     {
+        Debug.Log("This is Item");
         this.item = item;
-        // This line just fucking breaks everything (don't be surprised if sprites don't load when setting items)
-        // spriteRenderer.sprite = item.GetSprite();
+        spriteRenderer.sprite = item.GetSprite();
+        if (spriteRenderer == null)
+        {
+            Debug.LogError("SpriteRenderer not found on " + gameObject.name);
+        }
         if (item.amount > 1) amtText.SetText(item.amount.ToString());
         else amtText.SetText("");
     }

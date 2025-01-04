@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Inventory
@@ -9,6 +10,9 @@ public class Inventory
 
     private List<Item> itemList;
     private Action<Item> useItemAction;
+    private PlayerItems playerItems;
+
+    public int carcassAdd;
 
     public Inventory(Action<Item> useItemAction)
     {
@@ -25,6 +29,10 @@ public class Inventory
     {
         if (item.IsStackable())
         {
+            if (item.itemType == Item.ItemType.Remains)
+            {
+                carcassAdd = item.amount;
+            }
             bool itemAlreadyInInventory = false;
             foreach (Item inventoryItem in itemList)
             {
@@ -50,6 +58,10 @@ public class Inventory
     {
         if (item.IsStackable())
         {
+            if (item.itemType == Item.ItemType.Remains)
+            {
+                carcassAdd = -item.amount;
+            }
             Item itemInInventory = null;
             foreach (Item inventoryItem in itemList)
             {

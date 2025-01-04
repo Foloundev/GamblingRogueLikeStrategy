@@ -49,6 +49,10 @@ public class Health : MonoBehaviour
                 pItems.detectedDeath = true;
                 pItems.carcassCountValue = type;
                 OnDeathWithReference?.Invoke(sender);
+                float randOffsetX = Random.Range(-0.5f, 0.5f);
+                float randOffsetY = Random.Range(-0.5f, 0.5f);
+                Debug.Log("Enemy died");
+                ItemWorld.SpawnItemWorld(new Vector3(transform.position.x + randOffsetX, transform.position.y + randOffsetY), new Item { itemType = Item.ItemType.Remains, amount = type });
                 isDead = true;
                 Destroy(gameObject);
             }

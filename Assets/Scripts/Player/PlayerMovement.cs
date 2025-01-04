@@ -8,8 +8,7 @@ public class PlayerMovement : MonoBehaviour
     Rigidbody2D body;
     private Vector2 pointerInput;
 
-    [SerializeField]
-    private InputActionReference attack, pointerPosition;
+    [SerializeField] private InputActionReference attack, pointerPosition;
 
     float horizontal;
     float vertical;

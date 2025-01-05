@@ -56,7 +56,6 @@ public class PlayerItems : MonoBehaviour
     {
         switch(item.itemType) {
             case Item.ItemType.Remains:
-                inventory.RemoveItem(new Item { itemType = Item.ItemType.Remains, amount = 1 });
                 break;
             case Item.ItemType.Key:
                 inventory.RemoveItem(new Item {itemType = Item.ItemType.Key, amount = 1});

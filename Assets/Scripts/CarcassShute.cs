@@ -7,10 +7,8 @@ public class CarcassShute : MonoBehaviour
 {
     public bool isInRange = false;
 
-    [SerializeField]
-    private Transform circleOrigin;
-    [SerializeField]
-    private float radius;
+    [SerializeField] private Transform circleOrigin;
+    [SerializeField] private float radius;
 
 
     private void Start()

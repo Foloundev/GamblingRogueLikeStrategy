@@ -12,7 +12,7 @@ public class RoomSpawner : MonoBehaviour
     private void Awake()
     {
         templates = GameObject.FindGameObjectWithTag("Rooms").GetComponent<RoomTemplates>();
-        Invoke("Spawn", 0.5f);
+        Invoke("Spawn", .5f);
     }
 
     private void Spawn()
@@ -52,8 +52,8 @@ public class RoomSpawner : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log(CompareTag("Spawnpoint"));
-        if (other.CompareTag("Spawnpoint"))
+        //Debug.Log(CompareTag("Spawnpoint"));
+        if (other.CompareTag("SpawnPoint"))
         {
             Destroy(gameObject);
         }

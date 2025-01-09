@@ -8,9 +8,11 @@ public class RoomSpawner : MonoBehaviour
     private RoomTemplates templates;
     private int randInt;
     public bool spawned = false;
+    public float waitTime = 2f;
 
     private void Awake()
     {
+        Destroy(gameObject, waitTime);
         templates = GameObject.FindGameObjectWithTag("Rooms").GetComponent<RoomTemplates>();
         Invoke("Spawn", .15f);
     }

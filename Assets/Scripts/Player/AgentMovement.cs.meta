@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: bac9e3f629e58954cbc9b19ab917aa29
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - movement: {fileID: 650603630564758237, guid: 481dad59f927b4141b7db48f37e6f2af, type: 3}
+  - attack: {fileID: -5019058741679874313, guid: 481dad59f927b4141b7db48f37e6f2af, type: 3}
+  - pointerPosition: {fileID: -4027886502538358499, guid: 481dad59f927b4141b7db48f37e6f2af, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

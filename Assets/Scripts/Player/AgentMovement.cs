@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerMovement : MonoBehaviour
+public class AgentMovement : MonoBehaviour
 {
     Rigidbody2D body;
-    private Vector2 pointerInput;
+    private Vector2 pointerInput, movementInput;
 
-    [SerializeField] private InputActionReference attack, pointerPosition;
+    [SerializeField] private InputActionReference movement, attack, pointerPosition;
 
     float horizontal;
     float vertical;
@@ -18,21 +18,16 @@ public class PlayerMovement : MonoBehaviour
 
     private WeaponParent weaponParent;
 
+    public Vector2 PointerInput { get => pointerInput; set => pointerInput = value; }
+    public Vector2 MovementInput { get => movementInput; set => movementInput = value; }
+
     private void Awake()
     {
         weaponParent = GetComponentInChildren<WeaponParent>();
+      
     }
 
-    private void OnEnable()
-    {
-        attack.action.performed += PerformAttack;
-    }
-    private void OnDisable()
-    {
-        attack.action.performed -= PerformAttack;
-    }
-
-    private void PerformAttack(InputAction.CallbackContext obj)
+    public void PerformAttack()
     {
         weaponParent.Attack();
     }
@@ -44,22 +39,18 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        pointerInput = GetPointerInput();
+        //pointerInput = GetPointerInput();
+       // movementInput = move.action.ReadValue<Vector2>().normalized;
         weaponParent.PointerPosition = pointerInput;
         // Gives a value between -1 and 1
         horizontal = Input.GetAxisRaw("Horizontal"); // -1 is left
         vertical = Input.GetAxisRaw("Vertical"); // -1 is down
     }
 
-    private Vector2 GetPointerInput()
-    {
-        Vector3 mousePos = pointerPosition.action.ReadValue<Vector2>();
-        mousePos.z = Camera.main.nearClipPlane;
-        return Camera.main.ScreenToWorldPoint(mousePos);
-    }
-
+    
     void FixedUpdate()
     {
+        
         if (horizontal != 0 && vertical != 0) // Check for diagonal movement
         {
             // limit movement speed diagonally, so you move at 70% speed

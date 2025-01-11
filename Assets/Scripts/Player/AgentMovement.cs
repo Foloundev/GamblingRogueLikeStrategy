@@ -10,6 +10,7 @@ public class AgentMovement : MonoBehaviour
 
     [SerializeField] private InputActionReference movement, attack, pointerPosition;
 
+    Vector2 move;
     float horizontal;
     float vertical;
     float moveLimiter = 0.7f;
@@ -20,6 +21,8 @@ public class AgentMovement : MonoBehaviour
 
     public Vector2 PointerInput { get => pointerInput; set => pointerInput = value; }
     public Vector2 MovementInput { get => movementInput; set => movementInput = value; }
+
+    public Animator animator;
 
     private void Awake()
     {
@@ -43,21 +46,23 @@ public class AgentMovement : MonoBehaviour
        // movementInput = move.action.ReadValue<Vector2>().normalized;
         weaponParent.PointerPosition = pointerInput;
         // Gives a value between -1 and 1
-        horizontal = Input.GetAxisRaw("Horizontal"); // -1 is left
-        vertical = Input.GetAxisRaw("Vertical"); // -1 is down
+        move.x = Input.GetAxisRaw("Horizontal"); // -1 is left
+        move.y = Input.GetAxisRaw("Vertical"); // -1 is down
+
+        animator.SetFloat("Vertical", move.y);
     }
 
     
     void FixedUpdate()
     {
         
-        if (horizontal != 0 && vertical != 0) // Check for diagonal movement
+        if (move.x != 0 && move.y != 0) // Check for diagonal movement
         {
             // limit movement speed diagonally, so you move at 70% speed
-            horizontal *= moveLimiter;
-            vertical *= moveLimiter;
+            move.x *= moveLimiter;
+            move.y *= moveLimiter;
         }
 
-        body.velocity = new Vector2(horizontal * runSpeed, vertical * runSpeed);
+        body.velocity = new Vector2(move.x * runSpeed, move.y * runSpeed);
     }
 }

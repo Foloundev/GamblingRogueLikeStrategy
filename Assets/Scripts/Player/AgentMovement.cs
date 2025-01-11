@@ -17,7 +17,7 @@ public class AgentMovement : MonoBehaviour
 
     public float runSpeed = 20.0f;
 
-    private WeaponParent weaponParent;
+    [SerializeField] private WeaponParent weaponParent;
 
     public Vector2 PointerInput { get => pointerInput; set => pointerInput = value; }
     public Vector2 MovementInput { get => movementInput; set => movementInput = value; }

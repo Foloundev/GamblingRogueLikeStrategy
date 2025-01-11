@@ -15,15 +15,12 @@ public class RoomsScript : MonoBehaviour
         Gizmos.color = Color.green;
         Vector3 position = transform.position;
         /*Gizmos.DrawWireSphere(position, radius);*/
-        Gizmos.DrawCube(position, size);
+        Gizmos.DrawWireCube(position, size);
     }
 
-    public void DetectCollider()
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        foreach (Collider2D collider in Physics2D.OverlapBoxAll(transform.position, size, 0, 6))
-        {
-                Debug.Log("Changing Camera Pos");
-                _camera.transform.position = transform.position;
-        }
+        if(collision.tag == "Player")
+            _camera.transform.position = new Vector3(transform.position.x,transform.position.y,_camera.transform.position.z); 
     }
 }

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 
 public class PlayerItems : MonoBehaviour
@@ -23,6 +24,7 @@ public class PlayerItems : MonoBehaviour
 
     public bool usedKey = false;
 
+    [SerializeField] private Button keyBtn;
 
     private void Start()
     {
@@ -33,6 +35,7 @@ public class PlayerItems : MonoBehaviour
 
         healthValue = health.currentHealth;
         carcassCount = 0;
+        keyBtn.onClick.AddListener(GetKey);
     }
 
 
@@ -41,6 +44,10 @@ public class PlayerItems : MonoBehaviour
         return transform.position;
     }
 
+    private void GetKey()
+    {
+        inventory.AddItem(new Item { itemType = Item.ItemType.Key, amount = 1 });
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {

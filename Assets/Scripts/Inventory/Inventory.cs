@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Inventory
 {
@@ -11,6 +12,8 @@ public class Inventory
     private List<Item> itemList;
     private Action<Item> useItemAction;
     private PlayerItems playerItems;
+
+
 
     public int carcassAdd;
 

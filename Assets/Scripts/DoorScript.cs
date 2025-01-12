@@ -33,6 +33,7 @@ public class DoorScript : MonoBehaviour
                 {
                     pItems = collider.gameObject.GetComponent<PlayerItems>();
                     gameObject.SetActive(!pItems.usedKey);
+                    pItems.usedKey = false;
                 }
             }
         }

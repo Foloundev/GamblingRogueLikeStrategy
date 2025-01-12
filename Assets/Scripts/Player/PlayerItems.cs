@@ -21,6 +21,8 @@ public class PlayerItems : MonoBehaviour
     private CarcassShute carcassShute;
     [SerializeField] private InventoryUI inventoryUI;
 
+    public bool usedKey = false;
+
 
     private void Start()
     {
@@ -55,10 +57,9 @@ public class PlayerItems : MonoBehaviour
     public void UseItem(Item item)
     {
         switch(item.itemType) {
-            case Item.ItemType.Remains:
-                break;
             case Item.ItemType.Key:
                 inventory.RemoveItem(new Item {itemType = Item.ItemType.Key, amount = 1});
+                usedKey = true;
                 break;
         }
     }

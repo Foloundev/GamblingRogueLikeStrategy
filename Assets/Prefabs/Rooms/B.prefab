@@ -819,6 +819,7 @@ GameObject:
   - component: {fileID: 8080523840926154523}
   - component: {fileID: -7285460769644588389}
   - component: {fileID: -657825083361113418}
+  - component: {fileID: 6688251751637497011}
   m_Layer: 0
   m_Name: B
   m_TagString: Room
@@ -912,3 +913,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d7cfaab4cd724142a504bb91630fe38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isPlayerInRoom: 0
+  _camera: {fileID: 0}
+--- !u!114 &6688251751637497011
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8586967162903236203}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77b7010068431aa42a293bbdd03d41d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemy: {fileID: 5062737032601970171, guid: c19666682e809744ebdb918cc04af31f, type: 3}
+  roomScript: {fileID: 0}
